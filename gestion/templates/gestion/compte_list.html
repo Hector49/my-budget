@@ -1,0 +1,13 @@
+{% extends 'gestion/base.html' %}
+
+{% block content %}
+    {% for compte in comptes %}
+        <div class="post">
+            <div class="date">
+                {{compte.solde }}
+            </div>
+            <h1><a href="{% url 'compte_detail' pk=compte.pk %}">{{ compte.numero }}</a></h1>
+            <p>{{ compte.libelle }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

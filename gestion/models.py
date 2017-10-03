@@ -7,7 +7,7 @@ from django.db import models
 class Ecriture(models.Model):
     compte = models.ForeignKey('Compte')
     jour = models.IntegerField()
-    date = models.DateTimeField(auto_now_add=True, auto_now=False, 
+    date = models.DateTimeField(auto_now_add=True, auto_now=False,
                                 verbose_name="Date d'entrée")
     mouv = models.ForeignKey('Mouvement')
     poste = models.ForeignKey('Poste')
@@ -20,14 +20,14 @@ class Ecriture(models.Model):
 
     def __str__(self):
         return self.commentaires
-    
+
 class Compte(models.Model):
     numero = models.CharField(max_length=25)
     libelle = models.TextField(null=False)
     solde = models.DecimalField(max_digits=10,decimal_places=2)
 
     def __str__(self):
-        return self.libelle
+        return self.numero
 
 class Cause(models.Model):
     nom = models.CharField(max_length=50)

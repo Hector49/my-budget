@@ -1,22 +1,36 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-   <link rel="stylesheet" href="/media/css/style.css" />
    <title>{% block title %}Ma gestion bancaire{% endblock %}</title>
+   <link rel="stylesheet" href="/media/css/gestion.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<header>Gestion Bancaire avec Django</header>
+  <div class="page-header">
+      <h1><a href="/">Ma gestion bancaire </a>
+      {% if user.is_authenticated %}
+          <a href="" class="top-menu">
+          <span class="glyphicon glyphicon-plus"></span></a></h1>
+       {% endif %}
+
+  </div>
+
     <nav>
        {% block nav %}
-       <ul>
-            <li><a href="/">Accueil</a></li>
-            <li><a href="/blog/">Blog</a></li>
-            <li><a href="/contact/">Contact</a></li>
-       </ul>
+
+           <a href="/">Mes comptes</a>
+
        {% endblock %}
    </nav>
-   <section id="content">
-       {% block content %}{% endblock %}
+   <section class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                  {% block content %}
+                  {% endblock %}
+                </div>
+            </div>
    </section>
 <footer>&copy; Gestion Bancaire avec Django v:1.11.5</footer>
 </body>

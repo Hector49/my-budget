@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render, get_object_or_404
+from .models import Compte
 
-# Create your views here.
+
+def compte_list(request):
+    comptes = Compte.objects.order_by('numero')
+    return render(request, 'gestion/compte_list.html', {'comptes':comptes})
+
+def compte_detail(request, pk):
+    compte = get_object_or_404(Compte, pk=pk)
+    return render(request, 'gestion/compte_detail.html', {'compte':compte})
