@@ -1,8 +1,9 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
    <title>{% block title %}Ma gestion bancaire{% endblock %}</title>
-   <link rel="stylesheet" href="/media/css/gestion.css" />
+   <link rel="stylesheet" href="{% static 'css/gestion.css' %}" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -19,9 +20,12 @@
 
     <nav>
        {% block nav %}
-
-           <a href="/">Mes comptes</a>
-
+<ul>
+        <li>   <a href="/compte"> Comptes</a></li>
+        <li>   <a href="/"> Postes</a></li>
+        <li>   <a href="/"> Paiements</a></li>
+        <li>   <a href="/"> Motifs</a></li>
+</ul>
        {% endblock %}
    </nav>
    <section class="content container">

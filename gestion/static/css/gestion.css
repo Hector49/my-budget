@@ -6,7 +6,7 @@ body {
     padding-left: 15px;
 }
 .page-header {
-    background-color: #ff9400;
+    background-color: #AA9400;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
@@ -16,7 +16,14 @@ body {
     font-size: 36pt;
     text-decoration: none;
 }
-
+nav {
+  padding: 20px 20px 20px 40px;
+   float:right;
+   font-size: 20pt;
+   margin-right: : 40px;
+   background-color: #F7F305;
+   /*color: #F7F305;*/
+}
 .content {
     margin-left: 40px;
 }
@@ -25,7 +32,7 @@ h1, h2, h3, h4 {
     font-family: 'Lobster', cursive;
 }
 
-.date {
+.montant {
     float: right;
     color: #828282;
 }

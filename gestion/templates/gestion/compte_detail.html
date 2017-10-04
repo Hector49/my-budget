@@ -2,18 +2,15 @@
 
 {% block content %}
     <div class="post">
-        {% if post.published_date %}
-            <div class="date">
-                {{ post.published_date }}
+        <h1>{{ compte.libelle }}</h1>
+            <div class="montant">
                 {% if user.is_authenticated %}
-                <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">
+                <a class="btn btn-default" href="{% url 'compte_edit' pk=compte.pk %}">
                   <span class="glyphicon glyphicon-pencil"></span></a>
-                {% endif %}
-            </div>
-        {% endif %}
+        <p>{{ compte.numero }}</p>
 
-        <h1>{{ compte.numero }}</h1>
-        <p>{{ compte.libelle }}</p>
         <p>{{ compte.solde }}</p>
+        {% endif %}
+    </div>
     </div>
 {% endblock %}

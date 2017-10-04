@@ -3,11 +3,13 @@
 {% block content %}
     {% for compte in comptes %}
         <div class="post">
-            <div class="date">
-                {{compte.solde }}
-            </div>
-            <h1><a href="{% url 'compte_detail' pk=compte.pk %}">{{ compte.numero }}</a></h1>
-            <p>{{ compte.libelle }}</p>
+            <h1><a href="{% url 'compte_detail' pk=compte.pk %}">{{ compte.libelle }}</a></h1>
+            <p>{{ compte.numero }}</p>
+            {% if user.is_authenticated %}
+              <div class="montant">
+                  {{compte.solde }}
+              </div>
+             {% endif %}
         </div>
     {% endfor %}
 {% endblock %}
