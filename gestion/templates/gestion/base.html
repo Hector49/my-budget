@@ -10,7 +10,7 @@
 </head>
 <body>
   <div class="page-header">
-      <h1><a href="/">Ma gestion bancaire </a>
+      <h1><a href="">Ma gestion bancaire </a>
       {% if user.is_authenticated %}
           <a href="" class="top-menu">
           <span class="glyphicon glyphicon-plus"></span></a></h1>
@@ -20,8 +20,8 @@
     <nav>
        {% block nav %}
       <ul>
-        <li>   <a href="/compte"> Comptes</a></li>
-        <li>   <a href="/"> Postes</a></li>
+        <li>   <a href="compte"> Comptes</a></li>
+        <li>   <a href="poste"> Postes</a></li>
         <li>   <a href="/"> Paiements</a></li>
         <li>   <a href="/"> Motifs</a></li>
       </ul>

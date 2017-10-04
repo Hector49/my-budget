@@ -1,0 +1,20 @@
+{% extends 'gestion/base.html' %}
+
+{% block content %}
+
+
+{% if postes %}
+    <ul>
+    {% for poste in postes %}
+
+          <li>  <h1><a href="{% url 'poste_detail' pk=poste.pk %}">{{ poste.nom }}</a></h1></li>
+            {% if user.is_authenticated %}
+            Compte:  {{ poste.compte }}  Cumul: {{poste.cumul }}
+             {% endif %}
+
+        {% endfor %}
+      </ul>
+  {% else %}
+      <p>No polls are available.</p>
+  {% endif %}
+{% endblock %}

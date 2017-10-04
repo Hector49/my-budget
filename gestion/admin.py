@@ -2,7 +2,6 @@
 
 from django.contrib import admin
 from gestion.models import Ecriture, Compte, Mouvement, Poste, Cause
-# Register your models here.
 
 
 class EcritureAdmin(admin.ModelAdmin):
@@ -12,7 +11,7 @@ class EcritureAdmin(admin.ModelAdmin):
     'poste', 'cause', 'debit', 'credit', 'commentaires')
     list_filter    = ('poste','cause','compte', 'mouv')
     ordering_reverse       = ('date', )
-    
+
     fields = ('compte', 'jour', 'date', 'mouv', 'poste', 'cause', 'debit', 'credit', 'commentaires', 'validee', 'mensuelle')
 
 class CompteAdmin(admin.ModelAdmin):
@@ -21,7 +20,7 @@ class CompteAdmin(admin.ModelAdmin):
     list_display   = ('numero', 'libelle', 'solde')
     list_filter    = ('numero','libelle', )
     ordering       = ('id', )
-    
+
     fields = ('numero', 'libelle','solde')
 
 class MouvementAdmin(admin.ModelAdmin):
@@ -30,7 +29,7 @@ class MouvementAdmin(admin.ModelAdmin):
     list_display   = ('mouv', 'libelle', 'compte')
     list_filter    = ('mouv','libelle', )
     ordering       = ('id', )
-    
+
     fields = ('mouv', 'libelle','compte')
 
 class PosteAdmin(admin.ModelAdmin):
@@ -39,7 +38,7 @@ class PosteAdmin(admin.ModelAdmin):
     list_display   = ('nom', 'cumul', 'compte')
     list_filter    = ('nom','compte', )
     ordering       = ('id', )
-    
+
     fields = ('nom', 'cumul','compte')
 
 class CauseAdmin(admin.ModelAdmin):
@@ -48,7 +47,7 @@ class CauseAdmin(admin.ModelAdmin):
     list_display   = ('nom', 'cumul', 'compte')
     list_filter    = ('nom','compte', )
     ordering       = ('id', )
-    
+
     fields = ('nom', 'cumul','compte')
 
 admin.site.register(Ecriture, EcritureAdmin)

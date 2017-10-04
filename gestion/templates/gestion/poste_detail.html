@@ -4,12 +4,17 @@
     <div class="post">
         <h1>{{ poste.nom }}</h1>
             <div class="montant">
-                {% if user.is_authenticated %}
-                <a class="btn btn-default" href="{% url 'poste_edit' pk=compte.pk %}">
-                  <span class="glyphicon glyphicon-pencil"></span></a>
-        <p>{{ poste.compte }}</p>
+      {% if user.is_authenticated %}
+      <a class="btn btn-default" href="{% url 'poste_edit' pk=poste.pk %}">
+      <span class="glyphicon glyphicon-pencil"></span></a><br />
+      <br />
+      <a href="{% url 'poste_new' %}" class="btn btn-default">
+      <span class="glyphicon glyphicon-plus"></span></a>
+            <div>
+                <h1>{{ poste.compte }}</h1>
+                <p>{{ poste.cumul }}</p>
+            </div>
 
-        <p>{{ poste.cumul }}</p>
         {% endif %}
     </div>
     </div>
