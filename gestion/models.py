@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
-
 from django.db import models
+from django.utils import timezone
 
-# Create your models here.
 
 class Ecriture(models.Model):
     compte = models.ForeignKey('Compte')

@@ -1,7 +1,22 @@
 from django import forms
+from .models import Compte, Poste, Cause, Mouvement
 
-class ContactForm(forms.Form):
-    sujet = forms.CharField(max_length=100)
-    message = forms.CharField(widget=forms.Textarea)
-    envoyeur = forms.EmailField(label="Votre adresse mail")
-    renvoi = forms.BooleanField(help_text="Cochez si vous souhaitez obtenir une copie du mail envoyé.", required=False)
+class CompteForm(forms.ModelForm):
+    class Meta:
+        model = Compte
+        fields = ('numero','libelle','solde',)
+
+class PosteForm(forms.ModelForm):
+    class Meta:
+        model = Poste
+        fields = ('nom','cumul','compte',)
+
+class CauseForm(forms.ModelForm):
+    class Meta:
+        model = Cause
+        fields = ('nom','cumul','compte',)
+
+class MouvementForm(forms.ModelForm):
+    class Meta:
+        model = Mouvement
+        fields = ('mouv','libelle','cumul','compte',)
