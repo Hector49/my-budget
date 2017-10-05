@@ -1,8 +1,10 @@
 from django.conf.urls import url
 from . import views
 
+app_name = 'gestion'
 urlpatterns=[
-
+    url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
     #url COMPTE
     url(r'^compte$', views.compte_list, name='compte_list'),
     url(r'^compte/(?P<pk>[0-9]+)/$', views.compte_detail, name='compte_detail'),

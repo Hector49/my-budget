@@ -1,7 +1,24 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from .models import Compte, Poste
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.views import generic
+
+from .models import Compte, Poste, Cause, Mouvement, Ecriture
 from .forms import CompteForm, PosteForm
 
+
+class IndexView(generic.ListView):
+    template_name = 'gestion/index.html'
+    context_object_name = 'latest_compte_list'
+
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Compte.objects.order_by('numero')[:5]
+
+
+class DetailView(generic.DetailView):
+    model = Compte
+    template_name = 'gestion/detail.html'
 
 #Compte
 def compte_list(request):

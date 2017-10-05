@@ -1,0 +1,15 @@
+{% extends 'gestion/base.html' %}
+
+{% block content %}
+
+{% if latest_compte_list %}
+  <ul>
+    {% for compte in latest_compte_list %}
+      <li><h1><a href="{% url 'gestion:detail' compte.id %}">
+        {{ compte.libelle }}</a></h1></li>
+    {% endfor %}
+  </ul>
+{% else %}
+      <p>Il n'y a pas d'enregistrement dans la base de données.</p>
+{% endif %}
+{% endblock %}

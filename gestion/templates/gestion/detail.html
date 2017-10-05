@@ -1,0 +1,11 @@
+{% extends 'gestion/base.html' %}
+
+{% block content %}
+<h1>{{ compte.libelle }}</h1>
+<ul>
+{% for ecriture in compte.ecriture.all %}
+    <li>{{ ecriture.date }}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
