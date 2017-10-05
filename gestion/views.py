@@ -4,20 +4,20 @@ from django.urls import reverse
 from django.views import generic
 
 from .models import Compte, Poste, Cause, Mouvement, Ecriture
-from .forms import CompteForm, PosteForm
+from .forms import CompteForm, PosteForm, CauseForm, MouvementForm
 
 
 class IndexView(generic.ListView):
     template_name = 'gestion/index.html'
-    context_object_name = 'latest_compte_list'
+    context_object_name = 'latest_ecriture_list'
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Compte.objects.order_by('numero')[:5]
+        return Ecriture.objects.order_by('-date')[:5]
 
 
 class DetailView(generic.DetailView):
-    model = Compte
+    model = Ecriture
     template_name = 'gestion/detail.html'
 
 #Compte
@@ -35,7 +35,7 @@ def compte_new(request):
         compte = form.save(commit=False)
         compte.solde = 0.00
         compte.save()
-        return redirect('compte_detail', pk=compte.pk)
+        return redirect('gestion:compte_detail', pk=compte.pk)
     else:
         form = CompteForm()
     return render(request,'gestion/compte_edit.html', {'form':form})
@@ -47,7 +47,7 @@ def compte_edit(request, pk):
         if form.is_valid():
             compte = form.save(commit=False)
             compte.save()
-            return redirect('compte_detail', pk=compte.pk)
+            return redirect('gestion:compte_detail', pk=compte.pk)
     else:
         form = CompteForm(instance=compte)
     return render(request, 'gestion/compte_edit.html', {'form': form})
@@ -67,7 +67,7 @@ def poste_new(request):
         poste = form.save(commit=False)
         poste.cumul = 0.00
         poste.save()
-        return redirect('poste_detail', pk=poste.pk)
+        return redirect('gestion:poste_detail', pk=poste.pk)
     else:
         form = PosteForm()
     return render(request,'gestion/poste_edit.html', {'form':form})
@@ -79,7 +79,70 @@ def poste_edit(request, pk):
         if form.is_valid():
             poste = form.save(commit=False)
             poste.save()
-            return redirect('poste_detail', pk=poste.pk)
+            return redirect('gestion:poste_detail', pk=poste.pk)
     else:
         form = PosteForm(instance=poste)
     return render(request, 'gestion/poste_edit.html', {'form': form})
+
+#CAUSE
+def cause_list(request):
+    causes = Cause.objects.order_by('nom')
+    return render(request, 'gestion/cause_list.html', {'causes':causes})
+
+def cause_detail(request, pk):
+    cause = get_object_or_404(Cause, pk=pk)
+    return render(request, 'gestion/cause_detail.html', {'cause':cause})
+
+def cause_new(request):
+    form = CauseForm(request.POST)
+    if form.is_valid():
+        cause = form.save(commit=False)
+        cause.save()
+        return redirect('gestion:cause_detail', pk=cause.pk)
+    else:
+        form = CauseForm()
+    return render(request,'gestion/cause_edit.html', {'form':form})
+
+def cause_edit(request, pk):
+    cause = get_object_or_404(Cause, pk=pk)
+    if request.method == "POST":
+        form = CauseForm(request.POST, instance=cause)
+        if form.is_valid():
+            cause = form.save(commit=False)
+            cause.save()
+            return redirect('gestion:cause_detail', pk=cause.pk)
+    else:
+        form = CauseForm(instance=cause)
+    return render(request, 'gestion/cause_edit.html', {'form': form})
+
+#MOUVEMENT
+def mouvement_list(request):
+    mouvements = Mouvement.objects.order_by('libelle')
+    return render(request, 'gestion/mouvement_list.html', {'mouvements':mouvements})
+
+def mouvement_detail(request, pk):
+    mouvement = get_object_or_404(Mouvement, pk=pk)
+    return render(request, 'gestion/mouvement_detail.html', {'mouvement':mouvement})
+
+def mouvement_new(request):
+    form = MouvementForm(request.POST)
+    if form.is_valid():
+        mouvement = form.save(commit=False)
+        mouvement.cumul = 0.00
+        mouvement.save()
+        return redirect('gestion:mouvement_detail', pk=mouvement.pk)
+    else:
+        form = MouvementForm()
+    return render(request,'gestion/mouvement_edit.html', {'form':form})
+
+def mouvement_edit(request, pk):
+    mouvement = get_object_or_404(Mouvement, pk=pk)
+    if request.method == "POST":
+        form = MouvementForm(request.POST, instance=mouvement)
+        if form.is_valid():
+            mouvement = form.save(commit=False)
+            mouvement.save()
+            return redirect('gestion:mouvement_detail', pk=mouvement.pk)
+    else:
+        form = MouvementForm(instance=mouvement)
+    return render(request, 'gestion/mouvement_edit.html', {'form': form})

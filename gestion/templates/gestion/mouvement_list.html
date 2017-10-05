@@ -1,0 +1,21 @@
+{% extends 'gestion/base.html' %}
+
+{% block content %}
+
+{% if mouvements %}
+    <ul>
+    {% for mouvement in mouvements %}
+
+          <li>  <h1><a href="{% url 'gestion:mouvement_detail' pk=mouvement.pk %}">{{ mouvement.libelle }}</a></h1></li>
+            {% if user.is_authenticated %}
+            Paiement :  {{ mouvement.mouv }}
+            Compte:  {{ mouvement.compte }}
+             Cumul: {{mouvement.cumul }}
+             {% endif %}
+
+        {% endfor %}
+      </ul>
+  {% else %}
+      <p>Il n'y a pas d'enregistrement dans la base de données.</p>
+  {% endif %}
+{% endblock %}

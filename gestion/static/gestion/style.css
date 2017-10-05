@@ -3,6 +3,7 @@ h1 a {
     font-family: 'Lobster';
 }
 body {
+  background: white url("images/donut.png") no-repeat right bottom;
     padding-left: 15px;
 }
 .page-header {

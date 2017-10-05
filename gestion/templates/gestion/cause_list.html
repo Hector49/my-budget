@@ -2,14 +2,13 @@
 
 {% block content %}
 
-
-{% if postes %}
+{% if causes %}
     <ul>
-    {% for poste in postes %}
+    {% for cause in causes %}
 
-          <li>  <h1><a href="{% url 'gestion:poste_detail' pk=poste.pk %}">{{ poste.nom }}</a></h1></li>
+          <li>  <h1><a href="{% url 'gestion:cause_detail' pk=cause.pk %}">{{ cause.nom }}</a></h1></li>
             {% if user.is_authenticated %}
-            Compte:  {{ poste.compte }}  Cumul: {{poste.cumul }}
+            Compte:  {{ cause.compte }}  Cumul: {{cause.cumul }}
              {% endif %}
 
         {% endfor %}

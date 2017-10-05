@@ -1,11 +1,26 @@
 {% extends 'gestion/base.html' %}
 
 {% block content %}
-<h1>{{ compte.libelle }}</h1>
-<ul>
-{% for ecriture in compte.ecriture.all %}
-    <li>{{ ecriture.date }}</li>
-{% endfor %}
-</ul>
 
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="" method="post">
+{% csrf_token %}
+
+<h1>{{ ecriture.commentaires }}</h1>
+<ul>
+    <li>    {{ ecriture.compte.libelle }}</li>
+    <li>    {{ ecriture.jour }}</li>
+    <li>    {{ ecriture.date }}</li>
+    <li>    {{ ecriture.mouv.libelle }}</li>
+    <li>    {{ ecriture.poste }}</li>
+    <li>    {{ ecriture.cause }}</li>
+    <li>    {{ ecriture.debit }}</li>
+    <li>    {{ ecriture.credit }}</li>
+    <li>    {{ ecriture.validee }}</li>
+    <li>    {{ ecriture.mensuelle }}</li>
+
+</ul>
+<input type="submit" value="Save" />
+</form>
 {% endblock %}

@@ -5,13 +5,13 @@
         <h1>{{ compte.libelle }}</h1>
             <div class="montant">
                 {% if user.is_authenticated %}
-                <a class="btn btn-default" href="{% url 'compte_edit' pk=compte.pk %}">
+                <a class="btn btn-default" href="{% url 'gestion:compte_edit' pk=compte.pk %}">
                   <span class="glyphicon glyphicon-pencil"></span></a> ||
-                  <a href="{% url 'compte_new' %}" class="btn btn-default">
-                  <span class="glyphicon glyphicon-plus"></span></a>
+                  <a href="{% url 'gestion:compte_new' %}" class="btn btn-default">
+                  <span class="glyphicon glyphicon-plus"></span></a><br />
         <p>{{ compte.numero }}</p>
 
-        <p>{{ compte.solde }}</p>
+        <h1>{{ compte.solde }}</h1>
         {% endif %}
     </div>
     </div>

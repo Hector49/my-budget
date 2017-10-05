@@ -2,11 +2,12 @@
 
 {% block content %}
 
-{% if latest_compte_list %}
+{% if latest_ecriture_list %}
   <ul>
-    {% for compte in latest_compte_list %}
-      <li><h1><a href="{% url 'gestion:detail' compte.id %}">
-        {{ compte.libelle }}</a></h1></li>
+    {% for ecriture in latest_ecriture_list %}
+      <li><h1><a href="{% url 'gestion:detail' ecriture.id %}">
+        {{ ecriture.commentaires }}{{ ecriture.date }}</a>
+      </h1></li>
     {% endfor %}
   </ul>
 {% else %}
