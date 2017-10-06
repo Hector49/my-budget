@@ -1,15 +1,32 @@
 {% extends 'gestion/base.html' %}
 
 {% block content %}
-    {% for compte in comptes %}
-        <div class="post">
-            <h1><a href="{% url 'gestion:compte_detail' pk=compte.pk %}">{{ compte.libelle }}</a></h1>
-            <p>{{ compte.numero }}</p>
-            {% if user.is_authenticated %}
-              <div class="montant">
-                  {{compte.solde }}
-              </div>
-             {% endif %}
-        </div>
-    {% endfor %}
+{% for compte in comptes %}
+
+   <div class="post">
+    <h1><a href="{% url 'gestion:compte_detail' pk=compte.pk %}">{{ compte.id }}-*-{{ compte.libelle }}</a></h1>
+     <p>{{ compte.numero }}</p>
+     {% if user.is_authenticated %}
+          <div class="montant">
+            {{compte.solde }}
+          </div>
+     {% endif %}
+     </div>
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if comptes.has_previous %}
+            <a href="?page={{ comptes.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ comptes.number }} of {{ comptes.paginator.num_pages }}.
+        </span>
+
+        {% if comptes.has_next %}
+            <a href="?page={{ comptes.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
 {% endblock %}

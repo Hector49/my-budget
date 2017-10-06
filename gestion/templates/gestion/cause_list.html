@@ -3,16 +3,31 @@
 {% block content %}
 
 {% if causes %}
-    <ul>
-    {% for cause in causes %}
-
-          <li>  <h1><a href="{% url 'gestion:cause_detail' pk=cause.pk %}">{{ cause.nom }}</a></h1></li>
+{% for cause in causes %}
+    {# Each "cause" is a cause model object. #}
+    {{ cause.full_name|upper }}<br />
+    <li><h1><a href="{% url 'gestion:cause_detail' pk=cause.pk %}">{{ cause.id }}-{{ cause.nom }}</a></h1></li>
             {% if user.is_authenticated %}
             Compte:  {{ cause.compte }}  Cumul: {{cause.cumul }}
              {% endif %}
 
-        {% endfor %}
-      </ul>
+{% endfor %}
+<br />
+<div class="pagination">
+    <span class="step-links">
+        {% if causes.has_previous %}
+            <a href="?page={{ causes.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ causes.number }} of {{ causes.paginator.num_pages }}.
+        </span>
+
+        {% if causes.has_next %}
+            <a href="?page={{ causes.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
   {% else %}
       <p>Il n'y a pas d'enregistrement dans la base de données.</p>
   {% endif %}

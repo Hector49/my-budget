@@ -4,16 +4,32 @@
 
 
 {% if postes %}
-    <ul>
-    {% for poste in postes %}
-
-          <li>  <h1><a href="{% url 'gestion:poste_detail' pk=poste.pk %}">{{ poste.nom }}</a></h1></li>
+{% for poste in postes %}
+    {# Each "poste" is a poste model object. #}
+    {{ poste.full_name|upper }}<br />
+    <h1><a href="{% url 'gestion:poste_detail' pk=poste.pk %}">{{ poste.id }}-{{ poste.nom }}</a></h1>
             {% if user.is_authenticated %}
             Compte:  {{ poste.compte }}  Cumul: {{poste.cumul }}
              {% endif %}
 
-        {% endfor %}
-      </ul>
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if postes.has_previous %}
+            <a href="?page={{ postes.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ postes.number }} of {{ postes.paginator.num_pages }}.
+        </span>
+
+        {% if postes.has_next %}
+            <a href="?page={{ postes.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
   {% else %}
       <p>Il n'y a pas d'enregistrement dans la base de données.</p>
   {% endif %}

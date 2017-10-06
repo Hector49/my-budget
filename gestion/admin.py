@@ -7,12 +7,12 @@ from gestion.models import Ecriture, Compte, Mouvement, Poste, Cause
 class EcritureAdmin(admin.ModelAdmin):
 
     # Configuration de la liste d'articles
-    list_display   = ('compte', 'jour', 'date', 'mouv',
+    list_display   = ( 'compte', 'jour', 'date', 'mouv',
     'poste', 'cause', 'debit', 'credit', 'commentaires')
     list_filter    = ('poste','cause','compte', 'mouv')
-    ordering_reverse       = ('date', )
+    ordering_reverse       = ('id', )
 
-    fields = ('compte', 'jour', 'date', 'mouv', 'poste', 'cause', 'debit', 'credit', 'commentaires', 'validee', 'mensuelle')
+    fields = ( 'compte', 'jour', 'mouv', 'poste', 'cause', 'debit', 'credit', 'commentaires', 'validee', 'mensuelle')
 
 class CompteAdmin(admin.ModelAdmin):
 

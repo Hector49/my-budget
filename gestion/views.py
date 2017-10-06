@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Compte, Poste, Cause, Mouvement, Ecriture
 from .forms import CompteForm, PosteForm, CauseForm, MouvementForm
@@ -10,10 +11,11 @@ from .forms import CompteForm, PosteForm, CauseForm, MouvementForm
 class IndexView(generic.ListView):
     template_name = 'gestion/index.html'
     context_object_name = 'latest_ecriture_list'
+    paginate_by = 6    
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Ecriture.objects.order_by('-date')[:5]
+        return Ecriture.objects.order_by('-date')
 
 
 class DetailView(generic.DetailView):
@@ -23,6 +25,17 @@ class DetailView(generic.DetailView):
 #Compte
 def compte_list(request):
     comptes = Compte.objects.order_by('numero')
+    paginator = Paginator(comptes, 3) # Show 3 comptess per page
+
+    page = request.GET.get('page')
+    try:
+        comptes = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        comptes = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        comptes = paginator.page(paginator.num_pages)
     return render(request, 'gestion/compte_list.html', {'comptes':comptes})
 
 def compte_detail(request, pk):
@@ -55,6 +68,18 @@ def compte_edit(request, pk):
 #POSTE
 def poste_list(request):
     postes = Poste.objects.order_by('nom')
+    paginator = Paginator(postes, 5) # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        postes = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        postes = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        postes = paginator.page(paginator.num_pages)
+
     return render(request, 'gestion/poste_list.html', {'postes':postes})
 
 def poste_detail(request, pk):
@@ -87,6 +112,17 @@ def poste_edit(request, pk):
 #CAUSE
 def cause_list(request):
     causes = Cause.objects.order_by('nom')
+    paginator = Paginator(causes, 6) # Show 6 causes per page
+
+    page = request.GET.get('page')
+    try:
+        causes = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        causes = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        causes = paginator.page(paginator.num_pages)
     return render(request, 'gestion/cause_list.html', {'causes':causes})
 
 def cause_detail(request, pk):
