@@ -15,7 +15,7 @@ class Ecriture(models.Model):
     commentaires = models.TextField(null=True)
     validee = models.CharField(max_length=1)
     mensuelle = models.CharField(max_length=1)
-
+    
     def __str__(self):
         return self.commentaires
 

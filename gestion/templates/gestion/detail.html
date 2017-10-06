@@ -9,16 +9,16 @@
 
 <h1>{{ ecriture.commentaires }}</h1>
 <ul>
-    <li>    {{ ecriture.compte.libelle }}</li>
-    <li>    {{ ecriture.jour }}</li>
-    <li>    {{ ecriture.date }}</li>
-    <li>    {{ ecriture.mouv.libelle }}</li>
-    <li>    {{ ecriture.poste }}</li>
-    <li>    {{ ecriture.cause }}</li>
-    <li>    {{ ecriture.debit }}</li>
-    <li>    {{ ecriture.credit }}</li>
-    <li>    {{ ecriture.validee }}</li>
-    <li>    {{ ecriture.mensuelle }}</li>
+    <p>    {{ ecriture.compte.libelle }}</p>
+    <p> Valeur:   {{ ecriture.jour }}</p>
+    <p>Date d'opération:    {{ ecriture.date }}</p>
+    <p>Paiement par:    {{ ecriture.mouv.libelle }}</p>
+    <p>Poste opération:    {{ ecriture.poste }}</p>
+    <p>Motif opération    {{ ecriture.cause }}</p>
+    <p>Montant débit:    {{ ecriture.debit }}</p>
+    <p>Montant crédit:    {{ ecriture.credit }}</p>
+    <p>Opération validée:    {{ ecriture.validee }}</p>
+    <p>Opération recurrente:    {{ ecriture.mensuelle }}</p>
 
 </ul>
 <input type="submit" value="Save" />

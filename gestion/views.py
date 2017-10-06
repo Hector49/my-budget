@@ -11,7 +11,7 @@ from .forms import CompteForm, PosteForm, CauseForm, MouvementForm
 class IndexView(generic.ListView):
     template_name = 'gestion/index.html'
     context_object_name = 'latest_ecriture_list'
-    paginate_by = 6    
+    paginate_by = 6
 
     def get_queryset(self):
         """Return the last five published questions."""
@@ -22,6 +22,13 @@ class DetailView(generic.DetailView):
     model = Ecriture
     template_name = 'gestion/detail.html'
 
+class CreateView(generic.CreateView):
+    model = Ecriture
+    fields = [ 'compte', 'jour', 'mouv', 'poste', 'cause', 'debit', 'credit', 'commentaires', 'validee', 'mensuelle']
+    template_name = 'gestion/edit.html'
+
+    def get_success_url(self):
+        return reverse('gestion:index')
 #Compte
 def compte_list(request):
     comptes = Compte.objects.order_by('numero')

@@ -12,7 +12,7 @@
   <div class="page-header">
       <h1><a href="/gestion/">Ma gestion bancaire </a>
       {% if user.is_authenticated %}
-          <a href="" class="top-menu">
+          <a href="{% url 'gestion:edit'%}" class="top-menu">
           <span class="glyphicon glyphicon-plus"></span></a></h1>
        {% endif %}
   </div>
