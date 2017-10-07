@@ -5,8 +5,8 @@
 {% if causes %}
 {% for cause in causes %}
     {# Each "cause" is a cause model object. #}
-    {{ cause.full_name|upper }}<br />
-    <li><h1><a href="{% url 'gestion:cause_detail' pk=cause.pk %}">{{ cause.id }}-{{ cause.nom }}</a></h1></li>
+    
+    <h1><a href="{% url 'gestion:cause_detail' pk=cause.pk %}">{{ cause.id }}-{{ cause.nom|upper }}</a></h1>
             {% if user.is_authenticated %}
             Compte:  {{ cause.compte }}  Cumul: {{cause.cumul }}
              {% endif %}

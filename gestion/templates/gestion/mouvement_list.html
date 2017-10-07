@@ -6,7 +6,7 @@
     <ul>
     {% for mouvement in mouvements %}
 
-          <li>  <h1><a href="{% url 'gestion:mouvement_detail' pk=mouvement.pk %}">{{ mouvement.mouv }}-{{ mouvement.libelle }}</a></h1></li>
+          <h1><a href="{% url 'gestion:mouvement_detail' pk=mouvement.pk %}">{{ mouvement.mouv }}-{{ mouvement.libelle }}</a></h1>
             {% if user.is_authenticated %}
             Paiement :  {{ mouvement.mouv }}
             Compte:  {{ mouvement.compte }}

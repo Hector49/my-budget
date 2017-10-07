@@ -7,8 +7,8 @@ urlpatterns=[
     url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
     url(r'^new/$', views.CreateView.as_view(), name='edit'),
     #url COMPTE
-    url(r'^compte$', views.compte_list, name='compte_list'),
-    url(r'^compte/(?P<pk>[0-9]+)/$', views.compte_detail, name='compte_detail'),
+    url(r'^compte$', views.ListeView.as_view(), name='listecompte'),
+    url(r'^compte/(?P<pk>[0-9]+)/$', views.CompteDetailView.as_view(), name='comptedetail'),
     url(r'^compte/new/$', views.compte_new, name='compte_new'),
     url(r'^compte/(?P<pk>[0-9]+)/edit/$', views.compte_edit, name='compte_edit'),
     #url POSTE

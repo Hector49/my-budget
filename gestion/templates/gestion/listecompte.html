@@ -1,0 +1,30 @@
+{% extends 'gestion/base.html' %}
+
+{% block content %}
+Les dernières opérations enregistrées
+{% if latest_compte_list %}
+{% for compte in latest_compte_list %}
+    <h1><a href="{% url 'gestion:comptedetail' compte.id %}">
+      {{ compte.id }} - {{ compte.libelle }}</a>
+    </h1><h3>->{{ compte.numero }}</h3>
+  {% endfor %}
+
+<div class="pagination">
+  <span class="step-links">
+      {% if page_obj.has_previous %}
+          <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+      {% endif %}
+
+      <span class="current">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </span>
+
+      {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">next</a>
+      {% endif %}
+  </span>
+</div>
+{% else %}
+      <p>Il n'y a pas d'enregistrement dans la base de données.</p>
+{% endif %}
+{% endblock %}

@@ -6,8 +6,8 @@
 {% if postes %}
 {% for poste in postes %}
     {# Each "poste" is a poste model object. #}
-    {{ poste.full_name|upper }}<br />
-    <h1><a href="{% url 'gestion:poste_detail' pk=poste.pk %}">{{ poste.id }}-{{ poste.nom }}</a></h1>
+    
+    <h1><a href="{% url 'gestion:poste_detail' pk=poste.pk %}">{{ poste.id }}-{{ poste.nom|upper }}</a></h1>
             {% if user.is_authenticated %}
             Compte:  {{ poste.compte }}  Cumul: {{poste.cumul }}
              {% endif %}

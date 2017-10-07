@@ -1,14 +1,39 @@
 {% extends 'gestion/base.html' %}
 
 {% block content %}
-
+<h2>Brouillard des dernières opérations enregistrées</h2>
+<br />
 {% if latest_ecriture_list %}
-{% for ecriture in latest_ecriture_list %}
-    <li><h1><a href="{% url 'gestion:detail' ecriture.id %}">
-      {{ ecriture.id }} - - {{ ecriture.date }}</a>
-    </h1></li> <h2>{{ ecriture.commentaires }}</h2>
-  {% endfor %}
+<br />
+<table>
 
+  <tr>
+      <th> Ligne</th>
+      <th> Valeur</th>
+      <th> Date d'opération</th>
+      <th> Paiement </th>
+      <th> Poste opération  </th>
+      <th> Motif opération </th>
+      <th> Débit: </th>
+      <th> Crédit: </th>
+      <th>Validée </th>
+      <th>Mensuelle</th>
+    </tr>
+      {% for ecriture in latest_ecriture_list %}
+    <tr>
+        <td> <a href="{% url 'gestion:detail' ecriture.id %}">{{ ecriture.id }}</a></td>
+      <td>    {{ ecriture.jour }}</td>
+      <td>    {{ ecriture.date }}</td>
+      <td>    {{ ecriture.mouv }}</td>
+      <td>   {{ ecriture.poste }}</td>
+      <td>   {{ ecriture.cause }}</td>
+      <td>    {{ ecriture.debit }}</td>
+      <td>    {{ ecriture.credit }}</td>
+      <td>   {{ ecriture.validee }}</td>
+      <td>    {{ ecriture.mensuelle }}</td></tr>
+
+  {% endfor %}
+  </table>
 <div class="pagination">
   <span class="step-links">
       {% if page_obj.has_previous %}

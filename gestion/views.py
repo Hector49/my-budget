@@ -8,10 +8,31 @@ from .models import Compte, Poste, Cause, Mouvement, Ecriture
 from .forms import CompteForm, PosteForm, CauseForm, MouvementForm
 
 
+
+class ListeView(generic.ListView):
+    template_name = 'gestion/listecompte.html'
+    context_object_name = 'latest_compte_list'
+    paginate_by =3
+
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Compte.objects.order_by('numero')
+
+
+class CompteDetailView(generic.DetailView):
+    model = Compte
+    template_name = 'gestion/comptedetail.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Compte.objects.order_by('-compte__ecriture.id')
+
+#ECRITURE
 class IndexView(generic.ListView):
     template_name = 'gestion/index.html'
     context_object_name = 'latest_ecriture_list'
-    paginate_by = 6
+    paginate_by = 15
 
     def get_queryset(self):
         """Return the last five published questions."""

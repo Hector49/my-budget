@@ -1,0 +1,55 @@
+{% extends 'gestion/base.html' %}
+
+{% block content %}
+<h1>{{ compte.libelle }}</h1>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+
+{% csrf_token %}
+
+<table>
+
+<tr>
+    <th> Ligne</th>
+    <th> Valeur</th>
+    <th> Date d'opération</th>
+    <th> Paiement </th>
+    <th> Poste opération  </th>
+    <th> Motif opération </th>
+    <th> Débit: </th>
+    <th> Crédit: </th>
+    <th>Validée </th>
+    <th>Mensuelle</th>
+  </tr>
+    {% for ecriture in compte.ecriture_set.all %}
+  <tr>
+      <td>    {{ ecriture.id }}</td>
+    <td>    {{ ecriture.jour }}</td>
+    <td>    {{ ecriture.date }}</td>
+    <td>    {{ ecriture.mouv }}</td>
+    <td>   {{ ecriture.poste }}</td>
+    <td>   {{ ecriture.cause }}</td>
+    <td>    {{ ecriture.debit }}</td>
+    <td>    {{ ecriture.credit }}</td>
+    <td>   {{ ecriture.validee }}</td>
+    <td>    {{ ecriture.mensuelle }}</td></tr>
+
+{% endfor %}
+</table>
+<div class="pagination">
+  <span class="step-links">
+      {% if ecriture.has_previous %}
+          <a href="?page={{ ecriture.previous_page_number }}">previous</a>
+      {% endif %}
+
+      <span class="current">
+          Page {{ ecriture.number }} of {{ ecriture.paginator.num_pages }}.
+      </span>
+
+      {% if ecriture.has_next %}
+          <a href="?page={{ ecriture.next_page_number }}">next</a>
+      {% endif %}
+  </span>
+</div>
+
+{% endblock %}

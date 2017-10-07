@@ -20,7 +20,7 @@
     <nav>
        {% block nav %}
       <ul>
-        <li>   <a href="{% url 'gestion:compte_list'%}"> Comptes</a></li>
+        <li>   <a href="{% url 'gestion:listecompte'%}"> Comptes</a></li>
         <li>   <a href="{% url 'gestion:poste_list'%}"> Postes</a></li>
         <li>   <a href="{% url 'gestion:mouvement_list'%}"> Paiements</a></li>
         <li>   <a href="{% url 'gestion:cause_list'%}"> Motifs</a></li>
@@ -29,10 +29,10 @@
    </nav>
    <section class="content container">
             <div class="row">
-                <div class="col-md-8">
+              <!--  <div class="col-md-8">-->
                   {% block content %}
                   {% endblock %}
-                </div>
+              <!--  </div> -->
             </div>
    </section>
 <footer>&copy; Gestion Bancaire avec Django v:1.11.5</footer>
