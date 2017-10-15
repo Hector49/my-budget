@@ -38,16 +38,16 @@
 </table>
 <div class="pagination">
   <span class="step-links">
-      {% if ecriture.has_previous %}
-          <a href="?page={{ ecriture.previous_page_number }}">previous</a>
+      {% if page_obj.has_previous %}
+          <a href="?page={{ page_obj.previous_page_number }}">previous</a>
       {% endif %}
 
       <span class="current">
-          Page {{ ecriture.number }} of {{ ecriture.paginator.num_pages }}.
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
       </span>
 
-      {% if ecriture.has_next %}
-          <a href="?page={{ ecriture.next_page_number }}">next</a>
+      {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">next</a>
       {% endif %}
   </span>
 </div>

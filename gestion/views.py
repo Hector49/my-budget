@@ -96,7 +96,7 @@ def compte_edit(request, pk):
 #POSTE
 def poste_list(request):
     postes = Poste.objects.order_by('nom')
-    paginator = Paginator(postes, 5) # Show 25 contacts per page
+    paginator = Paginator(postes, 6) # Show 6 contacts per page
 
     page = request.GET.get('page')
     try:
@@ -140,7 +140,7 @@ def poste_edit(request, pk):
 #CAUSE
 def cause_list(request):
     causes = Cause.objects.order_by('nom')
-    paginator = Paginator(causes, 6) # Show 6 causes per page
+    paginator = Paginator(causes, 10) # Show 10 causes per page
 
     page = request.GET.get('page')
     try:
