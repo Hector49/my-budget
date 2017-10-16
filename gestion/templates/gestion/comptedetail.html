@@ -4,11 +4,8 @@
 <h1>{{ compte.libelle }}</h1>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-
 {% csrf_token %}
-
 <table>
-
 <tr>
     <th> Ligne</th>
     <th> Valeur</th>
@@ -23,7 +20,7 @@
   </tr>
     {% for ecriture in compte.ecriture_set.all %}
   <tr>
-      <td>    {{ ecriture.id }}</td>
+    <td><a href="{% url 'gestion:detail' ecriture.id %}">{{ ecriture.id }}</a></td>
     <td>    {{ ecriture.jour }}</td>
     <td>    {{ ecriture.date }}</td>
     <td>    {{ ecriture.mouv }}</td>
@@ -33,7 +30,6 @@
     <td>    {{ ecriture.credit }}</td>
     <td>   {{ ecriture.validee }}</td>
     <td>    {{ ecriture.mensuelle }}</td></tr>
-
 {% endfor %}
 </table>
 <div class="pagination">
@@ -51,5 +47,4 @@
       {% endif %}
   </span>
 </div>
-
 {% endblock %}

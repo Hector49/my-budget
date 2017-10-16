@@ -7,9 +7,9 @@
 <br />
 <h1>?</h1>
 <table>
-
   <tr>
-      <th> Ligne</th>
+      <th><a href="{% url 'gestion:edit'%}" class="top-menu">
+      <span class="glyphicon glyphicon-plus"></span></a> </th>
       <th> Valeur</th>
       <th> Date d'opération</th>
       <th> Paiement </th>
@@ -22,7 +22,11 @@
     </tr>
       {% for ecriture in latest_ecriture_list %}
     <tr>
-        <td> <a href="{% url 'gestion:detail' ecriture.id %}">{{ ecriture.id }}</a></td>
+      {% if ecriture.jour == 0 %}
+        <td> <a href="{% url 'gestion:edit' ecriture.id %}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+      {% else %}
+        <td> {{ ecriture.id}} </td>
+      {% endif %}
       <td>    {{ ecriture.jour }}</td>
       <td>    {{ ecriture.date }}</td>
       <td>    {{ ecriture.mouv }}</td>

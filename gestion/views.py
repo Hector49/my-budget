@@ -5,7 +5,7 @@ from django.views import generic
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Compte, Poste, Cause, Mouvement, Ecriture
-from .forms import CompteForm, PosteForm, CauseForm, MouvementForm
+from .forms import CompteForm, PosteForm, CauseForm, MouvementForm, EcritureForm
 
 
 
@@ -19,6 +19,7 @@ class ListeView(generic.ListView):
         return Compte.objects.order_by('numero')
 
 
+
 class CompteDetailView(generic.DetailView):
     model = Compte
     template_name = 'gestion/comptedetail.html'
@@ -27,6 +28,12 @@ class CompteDetailView(generic.DetailView):
     def get_queryset(self):
         """Return the last five published questions."""
         return Compte.objects.order_by('-compte__ecriture.id')
+
+    def get_context_data(self, **kwargs):
+        context = super(CompteDetailView, self).get_context_data(**kwargs)
+        context['ecriture_list'] = 'mes ecritures'
+        return context
+
 
 #ECRITURE
 class IndexView(generic.ListView):
@@ -38,10 +45,21 @@ class IndexView(generic.ListView):
         """Return the last five published questions."""
         return Ecriture.objects.order_by('-date')
 
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['ecriture'] = 'mon ecriture'
+        return context
+
 
 class DetailView(generic.DetailView):
     model = Ecriture
     template_name = 'gestion/detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(DetailView, self).get_context_data(**kwargs)
+        context['commentaires'] = 'mon operation'
+        return context
+
 
 class CreateView(generic.CreateView):
     model = Ecriture
@@ -50,6 +68,15 @@ class CreateView(generic.CreateView):
 
     def get_success_url(self):
         return reverse('gestion:index')
+
+class UpdateView(generic.UpdateView):
+    model = Ecriture
+    template_name = 'gestion/edit.html'
+    form_class = EcritureForm
+
+    def get_success_url(self):
+        return reverse('gestion:index')
+
 #Compte
 def compte_list(request):
     comptes = Compte.objects.order_by('numero')
