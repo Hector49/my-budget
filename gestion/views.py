@@ -12,7 +12,7 @@ from .forms import CompteForm, PosteForm, CauseForm, MouvementForm, EcritureForm
 class ListeView(generic.ListView):
     template_name = 'gestion/listecompte.html'
     context_object_name = 'latest_compte_list'
-    paginate_by =3
+    paginate_by = 4
 
     def get_queryset(self):
         """Return the last five published questions."""
@@ -25,9 +25,7 @@ class CompteDetailView(generic.DetailView):
     template_name = 'gestion/comptedetail.html'
     paginate_by = 10
 
-    def get_queryset(self):
-        """Return the last five published questions."""
-        return Compte.objects.order_by('-compte__ecriture.id')
+
 
     def get_context_data(self, **kwargs):
         context = super(CompteDetailView, self).get_context_data(**kwargs)
