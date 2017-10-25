@@ -3,13 +3,15 @@ from . import views
 
 app_name = 'gestion'
 urlpatterns=[
-    url(r'^$', views.IndexView.as_view(), name='index'),
+
+
+    url(r'^compte/(?P<id>\d+)', views.IndexView.as_view(), name='index'),
     url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
     url(r'^new/$', views.CreateView.as_view(), name='edit'),
     url(r'^(?P<pk>[0-9]+)/edit/$', views.UpdateView.as_view(), name='edit'),
     #url COMPTE
     url(r'^compte$', views.ListeView.as_view(), name='listecompte'),
-    url(r'^compte/(?P<pk>[0-9]+)/$', views.CompteDetailView.as_view(), name='comptedetail'),
+    url(r'^compte/(?P<pk>[0-9]+)/$', views.DetailCompteView.as_view(), name='detailcompte'),
     url(r'^compte/new/$', views.compte_new, name='compte_new'),
     url(r'^compte/(?P<pk>[0-9]+)/edit/$', views.compte_edit, name='compte_edit'),
     #url POSTE

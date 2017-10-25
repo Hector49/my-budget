@@ -23,7 +23,7 @@
     <td><a href="{% url 'gestion:detail' ecriture.id %}">{{ ecriture.id }}</a></td>
     <td>    {{ ecriture.jour }}</td>
     <td>    {{ ecriture.date }}</td>
-    <td>    {{ ecriture.mouv }}</td>
+    <td>    {{ ecriture.mouv.libelle }}</td>
     <td>   {{ ecriture.poste }}</td>
     <td>   {{ ecriture.cause }}</td>
     <td>    {{ ecriture.debit }}</td>

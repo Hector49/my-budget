@@ -1,10 +1,10 @@
 {% extends 'gestion/base.html' %}
 
 {% block content %}
-Les dernières opérations enregistrées
+<h1>Les comptes d'opérations enregistrés</h1>
 {% if latest_compte_list %}
 {% for compte in latest_compte_list %}
-    <h1><a href="{% url 'gestion:comptedetail' compte.id %}">
+    <h1><a href="{% url 'gestion:detailcompte' compte.id %}">
       {{ compte.id }} - {{ compte.libelle }}</a>
     </h1><h3>->{{ compte.numero }}</h3>
   {% endfor %}

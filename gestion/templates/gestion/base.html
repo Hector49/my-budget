@@ -10,7 +10,7 @@
 </head>
 <body>
   <div class="page-header">
-      <h1><a href="/gestion/">Ma gestion bancaire </a>
+      <h1><a href="{% url 'gestion:listecompte'%}">Ma gestion bancaire </a>
       {% if user.is_authenticated %}
           <a href="{% url 'gestion:edit'%}" class="top-menu">
           <span class="glyphicon glyphicon-plus"></span></a></h1>

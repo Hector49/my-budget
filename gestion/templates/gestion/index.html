@@ -2,11 +2,11 @@
 
 {% block content %}
 <h2>Brouillard des dernières opérations enregistrées</h2>
+
 <br />
 {% if latest_ecriture_list %}
-{{ compte.libelle}}
 <br />
-<h1>?</h1>
+<h1>{{ context_object_name.id }}</h1>
 <table>
   <tr>
       <th><a href="{% url 'gestion:edit'%}" class="top-menu">
@@ -22,7 +22,7 @@
       <th>Mensuelle</th>
     </tr>
       {% for ecriture in latest_ecriture_list %}
-      {{ ecriture__compte.libelle}}
+
     <tr>
       {% if ecriture.jour == 0 %}
         <td> <a href="{% url 'gestion:edit' ecriture.id %}"><span class="glyphicon glyphicon-pencil"></span></a></td>
@@ -31,7 +31,7 @@
       {% endif %}
       <td>    {{ ecriture.jour }}</td>
       <td>    {{ ecriture.date }}</td>
-      <td>    {{ ecriture.mouv }}</td>
+      <td>    {{ ecriture.mouv.libelle }}</td>
       <td>   {{ ecriture.poste }}</td>
       <td>   {{ ecriture.cause }}</td>
       <td>    {{ ecriture.debit }}</td>

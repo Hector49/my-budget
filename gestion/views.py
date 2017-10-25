@@ -18,17 +18,13 @@ class ListeView(generic.ListView):
         """Return the last five published questions."""
         return Compte.objects.order_by('numero')
 
-
-
-class CompteDetailView(generic.DetailView):
+class DetailCompteView(generic.DetailView):
+    context_object_name='compte'
     model = Compte
-    template_name = 'gestion/comptedetail.html'
-    paginate_by = 10
-
-
+    template_name = 'gestion/detailcompte.html'
 
     def get_context_data(self, **kwargs):
-        context = super(CompteDetailView, self).get_context_data(**kwargs)
+        context = super(DetailCompteView, self).get_context_data(**kwargs)
         context['ecriture_list'] = 'mes ecritures'
         return context
 
@@ -41,7 +37,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Ecriture.objects.order_by('-date')
+        return Ecriture.objects.filter(compte__id=self.kwargs['id']).order_by('-date')
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
@@ -65,7 +61,7 @@ class CreateView(generic.CreateView):
     template_name = 'gestion/edit.html'
 
     def get_success_url(self):
-        return reverse('gestion:index')
+        return reverse('gestion:listecompte')
 
 class UpdateView(generic.UpdateView):
     model = Ecriture
@@ -73,7 +69,7 @@ class UpdateView(generic.UpdateView):
     form_class = EcritureForm
 
     def get_success_url(self):
-        return reverse('gestion:index')
+        return reverse('gestion:listecompte')
 
 #Compte
 def compte_list(request):
