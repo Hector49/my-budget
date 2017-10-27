@@ -2,16 +2,18 @@
 
 {% block content %}
 {% for compte in comptes %}
-
-   <div class="post">
-    <h1><a href="{% url 'gestion:compte_detail' pk=compte.pk %}">{{ compte.id }}-*-{{ compte.libelle }}</a></h1>
-     <p>{{ compte.numero }}</p>
      {% if user.is_authenticated %}
-          <div class="montant">
-            {{compte.solde }}
-          </div>
+     <div class="post">
+       <h1><a href="{% url 'gestion:compte_detail' pk=compte.pk %}">{{ compte.id }}-*-{{ compte.libelle }}</a></h1>
+       <p>{{ compte.numero }}</p>
+       <p class="montant">{{compte.solde }} €</p>
+      </div>
+       {% else %}
+       <div class="post">
+         <h1><a href="{% url 'admin:login'%}">{{ compte.libelle }}</a></h1>
+       <div class="post"> 
      {% endif %}
-     </div>
+
 {% endfor %}
 
 <div class="pagination">

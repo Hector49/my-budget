@@ -3,19 +3,20 @@
 {% block content %}
     <div class="post">
         <h1>{{ poste.nom }}</h1>
-            <div class="montant">
+        
+            <h1>{{ poste.compte.libelle }}</h1>
+            <p class="montant">{{ poste.cumul }}</p>
+        </div>
+
       {% if user.is_authenticated %}
       <a class="btn btn-default" href="{% url 'gestion:poste_edit' pk=poste.pk %}">
       <span class="glyphicon glyphicon-pencil"></span></a><br />
       <br />
       <a href="{% url 'gestion:poste_new' %}" class="btn btn-default">
       <span class="glyphicon glyphicon-plus"></span></a>
-            <div>
-                <h1>{{ poste.compte }}</h1>
-                <p>{{ poste.cumul }}</p>
-            </div>
+
 
         {% endif %}
-    </div>
-    </div>
+
+
 {% endblock %}

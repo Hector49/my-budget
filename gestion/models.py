@@ -28,7 +28,7 @@ class Compte(models.Model):
     solde = models.DecimalField(max_digits=10,decimal_places=2)
 
     def __str__(self):
-        return self.numero
+        return self.libelle
 
 class Cause(models.Model):
     nom = models.CharField(max_length=50)

@@ -4,7 +4,7 @@ h1 a {
 }
 body {
   background: white url("images/donut.png") no-repeat right bottom;
-    padding-left: 15px;
+    padding-left: 0px;
 }
 .page-header {
     background-color: #AA9400;
@@ -18,11 +18,12 @@ body {
     text-decoration: none;
 }
 nav {
+  overflow: auto;
   padding: 20px 20px 20px 40px;
    float:right;
    font-size: 20pt;
    margin-right: : 40px;
-   background-color: #F7F305;
+   background-color: #f2ff37;
    /*color: #F7F305;*/
 }
 table tr:nth-child(odd){
@@ -46,6 +47,35 @@ td{
 li a {
     color: green;
 }
+form {
+width: 700px;
+font-family: Arial, "Arial Black", Times, "Times New Roman", serif;
+font-size: 14px;
+background-color: #52afe5;
+padding: 20px;
+margin-top: 10px;
+margin-right: auto;
+margin-bottom: 20px;
+margin-left: auto;
+/*border-top: 2px dotted #900;
+border-bottom: 2px dotted #900;*/
+}
+form label {
+font-size: 14px;
+color: #fffde9;
+width: 140px;
+display: inline-block;
+}
+form label[for="mails"] {
+width: 400px;
+}
+form p:first-child label {
+display: inline;
+width: auto;
+}
+input {
+outline: none;
+}
 .content {
 
     margin-left: 40px;
@@ -56,13 +86,11 @@ h1, h2, h3, h4 {
 }
 
 .montant {
-    float: right;
-    color: #828282;
+    float: left;
+    font-size: 26pt;
+    color: #328282;
 }
 
-.save {
-    float: right;
-}
 
 .post-form textarea, .post-form input {
     width: 100%;
